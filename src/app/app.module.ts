@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 // Para trabalhar com formulários no Angular 12
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -51,7 +51,7 @@ export function tokenGetter() {
     HeaderComponent,
     TecnicoListComponent,
     LoginComponent,
-    TecnicoCreateComponent
+    TecnicoCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,10 +89,10 @@ export function tokenGetter() {
         allowedDomains: ['localhost:8080'],
         disallowedRoutes: ['localhost:8080/auth']
       }
-    })
+    }),
 
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [AuthInterceptorProvider, provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
