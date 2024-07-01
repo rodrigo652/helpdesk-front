@@ -34,7 +34,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { timeout } from 'rxjs';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
 
 @NgModule({
   declarations: [
@@ -74,7 +79,15 @@ import { timeout } from 'rxjs';
         timeOut: 4000, 
         closeButton: true, 
         progressBar: true
-})
+}),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['localhost:8080/auth']
+      }
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
