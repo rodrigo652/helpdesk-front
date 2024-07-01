@@ -37,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
+import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -52,6 +53,7 @@ export function tokenGetter() {
     TecnicoListComponent,
     LoginComponent,
     TecnicoCreateComponent,
+    TecnicoUpdateComponent,
   ],
   imports: [
     BrowserModule,
