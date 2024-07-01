@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-    baseUrl: 'http://localhost:8080/swagger-ui/index.html#/'
+    baseUrl: 'http://localhost:8080'
 }
