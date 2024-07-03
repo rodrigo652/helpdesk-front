@@ -28,18 +28,26 @@ export class LoginComponent implements OnInit{
   }
 
   logar() {
-    this.service.authenticate(this.creds).pipe(
-      tap(resposta => {
-        this.service.successfulLogin(resposta.headers.get('Authorization').substring(7));
-        this.router.navigate(['']);
-      }),
-      catchError(error => {
-        this.toast.error('Usuário e/ou senha inválidos');
-        return throwError(() => new Error(error));
+    this.service.authenticate(this.creds).subscribe(resposta => {
+      this.service.successfulLogin(resposta.headers.get('Authorization').substring(7));
+    }, () => {
+      this.toast.error('Usuário e/ou senha inválidos');
     })
-  ).subscribe();
-}
+  }
 
+  // logar() {
+  //   this.service.authenticate(this.creds).subscribe(resposta => {
+  //     const authHeader = resposta.headers.get('Authorization');
+  //     if (authHeader) {
+  //       const token = authHeader.substring(7);
+  //       this.service.successfulLogin(token);
+  //     } else {
+  //       this.toast.error('Token de autorização não encontrado');
+  //     }
+  //   }, () => {
+  //     this.toast.error('Usuário e/ou senha inválidos');
+  //   });
+  // }
 
   validaCampos(): boolean {
     return this.email.valid && this.senha.valid;

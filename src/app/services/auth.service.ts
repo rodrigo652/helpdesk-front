@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   authenticate(creds: Credenciais) {
-    return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
+    return this.http.post(`http://localhost:8080/login`, creds, {
       observe: 'response',
       responseType: 'text'
     });
